@@ -12,13 +12,6 @@ st.set_page_config(
     layout="wide"
 )
 
-# --- TITRE PRINCIPAL DE L'APPLICATION ---
-st.title("Apport de la géomatique à la gestion des infrastructures routières de la commune de Mbao")
-st.markdown("""
-Cette plateforme interactive présente le diagnostic de vulnérabilité du réseau routier et la répartition des infrastructures de transport dans la commune de Mbao.
-""")
-st.write("---")
-
 # =========================================================
 # 2. CHARGEMENT OPTIMISÉ DES DONNÉES
 # =========================================================
@@ -156,7 +149,7 @@ with col2:
             style_function=lambda x: {'color': '#4a4a4a', 'weight': 3, 'dashArray': '6, 4', 'opacity': 0.9}
         ).add_to(m)
 
-    # 9. Structure de l'Autopont (Nettoyé des marqueurs bleus par défaut)
+    # 9. Structure de l'Autopont
     if afficher_autopont and not autopont.empty:
         folium.GeoJson(
             autopont,
@@ -167,11 +160,10 @@ with col2:
                 'fillColor': '#ff00ff', 
                 'fillOpacity': 0.7
             },
-            # Force l'utilisation d'un marqueur circulaire discret si la géométrie est un point
             marker=folium.CircleMarker(radius=8, color='#ff00ff', fillColor='#ff00ff', fillOpacity=0.8)
         ).add_to(m)
 
-    # 10. Rond-point (Nettoyé des marqueurs bleus par défaut)
+    # 10. Rond-point
     if afficher_rond_point and not rond_point.empty:
         folium.GeoJson(
             rond_point,
@@ -182,36 +174,8 @@ with col2:
                 'fillColor': '#800080', 
                 'fillOpacity': 0.7
             },
-            # Force l'utilisation d'un marqueur circulaire discret si la géométrie est un point
             marker=folium.CircleMarker(radius=9, color='#800080', fillColor='#800080', fillOpacity=0.9)
         ).add_to(m)
 
     # Rendu final de la carte dans l'application Streamlit
     st_folium(m, width=850, height=600, returned_objects=[])
-
-# =========================================================
-# 4. RÉCAPITULATION TECHNIQUE ET OBJECTIFS DU PROJET
-# =========================================================
-st.write("---")
-st.header("📝 Synthèse et Objectifs du Projet Intégrateur")
-
-col_recap1, col_recap2 = st.columns(2)
-
-with col_recap1:
-    st.markdown("""
-    ### 🎯 Objectif Général
-    Ce portail cartographique a été conçu pour mettre en évidence **l'apport de la géomatique dans la planification territoriale et la résilience urbaine** au sein de la commune de Mbao. 
-    Face à la recrudescence des phénomènes d'inondation saisonnière, l'outil croise les données morphologiques du réseau routier avec les zones à forte vulnérabilité hydrologique.
-    
-    ### 📈 Intérêt pour les Décideurs
-    * **Aide à la décision :** Permet aux services municipaux de visualiser instantanément les quartiers enclavés lors des pics de pluie.
-    * **Optimisation des ressources :** Oriente les budgets d'aménagement vers les axes classés en *Urgence Absolue* pour le drainage ou le bitumage prioritaire.
-    """)
-
-with col_recap2:
-    st.markdown("""
-    ### 🛠️ Approche Méthodologique
-    1. **Collecte et Nettoyage :** Structuration des données géospatiales collectées sur le terrain (Rond-point, Autopont, Linéaires routiers).
-    2. **Analyse Spatiale :** Croisement matriciel sous SIG pour classifier le niveau de priorité des interventions (Priorité 2 vs Urgence Absolue).
-    3. **Webmapping Dynamique :** Diffusion des résultats via une interface Open Source interactive (Streamlit / Folium) accessible à l'ensemble des acteurs du développement territorial.
-    """)
