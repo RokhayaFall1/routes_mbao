@@ -44,9 +44,9 @@ col1, col2 = st.columns([1, 1.5])
 # COLONNE 1 : PANNEAU DE CONTROLE ET FILTRES (À GAUCHE)
 # =========================================================
 with col1:
-    st.header("📊 Gestion des Couches")
+    st.header("Gestion des Couches")
     
-    st.subheader("🗺️ Données de Base & Communes")
+    st.subheader("Données de Base & Communes")
     afficher_commune = st.checkbox("Limite Communale (Mbao)", value=True)
     afficher_quartiers = st.checkbox("Quartiers de Mbao", value=False)  
     afficher_routes = st.checkbox("Réseau routier global (Noir)", value=True)
@@ -58,18 +58,17 @@ with col1:
     st.subheader("🚨 Infrastructures & Priorités d'Intervention")
     afficher_priorite2 = st.checkbox("Routes - Priorité 2 (Secondaire)", value=False)
     afficher_urgence = st.checkbox("Routes - Urgence Absolue", value=True)
-    afficher_autopont = st.checkbox("📍 Afficher l'Autopont (Rose)", value=True)
-    afficher_rond_point = st.checkbox("⭕ Afficher le Rond-point (Violet)", value=True)
-    afficher_train = st.checkbox("🛤️ Ligne de Train (TER)", value=True)
+    afficher_autopont = st.checkbox(" Afficher l'Autopont (Rose)", value=True)
+    afficher_rond_point = st.checkbox("Afficher le Rond-point (Violet)", value=True)
+    afficher_train = st.checkbox("Ligne de Train (TER)", value=True)
     
-    st.write("---")
-    st.info("💡 Utilisez les filtres ci-dessus pour activer ou masquer les éléments de votre diagnostic territorial.")
+    
 
 # =========================================================
 # COLONNE 2 : CARTE INTERACTIVE (À DROITE)
 # =========================================================
 with col2:
-    st.header("🗺️ Visualisation Cartographique")
+    st.header("Visualisation Cartographique")
     
     # Centre de la carte calé sur la commune de Mbao
     centre_mbao = [14.740, -17.323]
